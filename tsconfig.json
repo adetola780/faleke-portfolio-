@@ -13,6 +13,11 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": ["./*"]
     }
@@ -25,5 +30,11 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "db",
+    "worker",
+    "vite.config.ts",
+    "drizzle.config.ts"
+  ]
 }
