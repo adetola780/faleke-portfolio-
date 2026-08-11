@@ -3,7 +3,7 @@ name: Unpack portfolio source
 on:
   push:
     paths:
-      - portfolio-upload.zip
+      - portfolio-upload.zip.part-*
   workflow_dispatch:
 
 permissions:
@@ -16,10 +16,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Unpack portfolio
+      - name: Rebuild and unpack portfolio
         run: |
+          cat portfolio-upload.zip.part-* > portfolio-upload.zip
           unzip -o portfolio-upload.zip -d .
           rm portfolio-upload.zip
+          rm portfolio-upload.zip.part-*
 
       - name: Commit extracted files
         run: |
