@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - portfolio-upload.zip.part-*
+      - .github/workflows/github-unpack-portfolio.yml
   workflow_dispatch:
 
 permissions:
@@ -19,7 +20,7 @@ jobs:
       - name: Rebuild and unpack portfolio
         run: |
           cat portfolio-upload.zip.part-* > portfolio-upload.zip
-          unzip -o portfolio-upload.zip -d .
+          unzip -o portfolio-upload.zip -d . || true
           rm portfolio-upload.zip
           rm portfolio-upload.zip.part-*
 
