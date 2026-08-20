@@ -504,21 +504,72 @@ nav a:focus-visible::after {
 }
 
 .strength-ticker {
-  display: flex;
-  align-items: center;
-  gap: 26px;
+  --ticker-space: clamp(30px, 4vw, 62px);
   margin-top: clamp(80px, 10vw, 150px);
   padding: 28px 0;
   border-top: 0;
   border-bottom: 0;
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
   font-size: clamp(1.1rem, 2vw, 1.8rem);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.strength-ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: strength-marquee 26s linear infinite;
+}
+
+.strength-ticker-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: var(--ticker-space);
+  padding-right: var(--ticker-space);
+}
+
+.strength-ticker-item {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2vw, 30px);
 }
 
 .strength-ticker i {
   color: var(--yellow);
   font-style: normal;
+}
+
+@keyframes strength-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strength-ticker {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scrollbar-width: none;
+  }
+
+  .strength-ticker::-webkit-scrollbar {
+    display: none;
+  }
+
+  .strength-ticker-track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .strength-ticker-group + .strength-ticker-group {
+    display: none;
+  }
 }
 
 .services {
@@ -1610,7 +1661,8 @@ footer {
   .hero-about-title { justify-content: flex-start; margin-bottom: 30px; }
   .about h2, .services h2, .work h2, .experience h2 { font-size: clamp(2.9rem, 14vw, 5rem); }
   .about-meta { grid-template-columns: 1fr; }
-  .strength-ticker { gap: 18px; }
+  .strength-ticker { --ticker-space: 24px; }
+  .strength-ticker-item { gap: 16px; }
   .service-list li { grid-template-columns: 40px 1fr auto; gap: 10px; }
   .tool-row { grid-template-columns: 50px 1fr; }
   .tool-row small { grid-column: 2; }
