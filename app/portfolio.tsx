@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 
 const nameLetters = "OLUMIDE".split("");
 
+const strengths = [
+  "Creative thinking",
+  "Strong communication",
+  "Customer focus",
+  "Visual storytelling",
+  "Administrative excellence",
+];
+
 const tools = [
   { name: "Canva", type: "Design", className: "tool-canva", icon: "/tool-logos/canva.svg" },
   { name: "CapCut", type: "Motion", className: "tool-capcut", icon: "/tool-logos/capcut.svg" },
@@ -148,12 +156,22 @@ export function Portfolio() {
                 </div>
               </div>
             </div>
-            <div className="strength-ticker" aria-label="Professional strengths">
-              <span>Creative thinking</span><i>✦</i>
-              <span>Strong communication</span><i>✦</i>
-              <span>Customer focus</span><i>✦</i>
-              <span>Visual storytelling</span><i>✦</i>
-              <span>Administrative excellence</span>
+            <div
+              className="strength-ticker"
+              aria-label="Creative thinking, strong communication, customer focus, visual storytelling and administrative excellence"
+            >
+              <div className="strength-ticker-track" aria-hidden="true">
+                {[0, 1].map((copy) => (
+                  <div className="strength-ticker-group" key={copy}>
+                    {strengths.map((strength) => (
+                      <span className="strength-ticker-item" key={`${copy}-${strength}`}>
+                        <span>{strength}</span>
+                        <i>✦</i>
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
