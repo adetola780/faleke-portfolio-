@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 const nameLetters = "OLUMIDE".split("");
 
 const tools = [
-  { name: "Canva", type: "Design", className: "tool-canva", icon: "https://api.iconify.design/logos/canva.svg" },
-  { name: "CapCut", type: "Motion", className: "tool-capcut", icon: "https://api.iconify.design/logos/capcut-icon.svg" },
-  { name: "HeyGen", type: "AI video", className: "tool-heygen", icon: "https://api.iconify.design/simple-icons/heygen.svg?color=%23151515" },
-  { name: "Claude", type: "AI creative", className: "tool-claude", icon: "https://api.iconify.design/logos/claude-icon.svg" },
-  { name: "Gemini", type: "AI creative", className: "tool-gemini", icon: "https://api.iconify.design/logos/google-gemini.svg" },
+  { name: "Canva", type: "Design", className: "tool-canva", icon: "/tool-logos/canva.svg" },
+  { name: "CapCut", type: "Motion", className: "tool-capcut", icon: "/tool-logos/capcut.svg" },
+  { name: "HeyGen", type: "AI video", className: "tool-heygen", icon: "/tool-logos/heygen.svg" },
+  { name: "Claude", type: "AI creative", className: "tool-claude", icon: "/tool-logos/claude.svg" },
+  { name: "Gemini", type: "AI creative", className: "tool-gemini", icon: "/tool-logos/gemini.svg" },
 ];
 
 const workCategories = [
@@ -172,9 +172,8 @@ export function Portfolio() {
                   data-reveal={index % 2 === 0 ? "left" : "right"}
                   style={{ "--reveal-delay": `${index * 90}ms` } as React.CSSProperties}
                 >
-                  <span className={`tool-logo ${tool.className}`} aria-hidden="true">
-                    <b>{tool.name.slice(0, 1)}</b>
-                    <img src={tool.icon} alt="" />
+                  <span className={`tool-logo ${tool.className}`}>
+                    <img src={tool.icon} alt={`${tool.name} logo`} />
                   </span>
                   <strong>{tool.name}</strong>
                   <small>{tool.type}</small>
